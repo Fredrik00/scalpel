@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import MenuDrawer from '../components/MenuDrawer/MenuDrawer'
-import { setSelectedPlan, closeMenuDrawer } from '../actions'
+import { setSelectedPlan, closeMenuDrawer  } from '../actions'
+import { fetchTestData } from '../actions/testData'
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -19,6 +20,7 @@ const mapDispatchToProps = dispatch => {
 		},
 		onRequestClose: () => {
 			dispatch(closeMenuDrawer())
+			dispatch(fetchTestData())
 		}
 	}
 }
