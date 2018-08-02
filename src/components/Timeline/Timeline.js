@@ -422,6 +422,7 @@ class Timeline extends Component {
 			width: 80,
 			height: 100,
 		}
+	}
 	
 	changeSize() {
 		this.setState({
