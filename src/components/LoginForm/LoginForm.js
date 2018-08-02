@@ -39,7 +39,10 @@ class LoginForm extends Component {
 	render() {
 		return (
 			<Paper className="box">
-				<h1>Logg inn </h1>
+				<div className="top">
+					<h1>Logg inn</h1>
+					<img className="logo" src={ require('../../assets/scalpelapp.ico') } />
+				</div>
 				<TextField
 					autoFocus = {true}
 					margin = {'dense'}

@@ -4,10 +4,21 @@
 .box{
 	padding: $padding-md;
 	margin: $margin-md;
+}
+.top{
+	width: 100%;
 	h1{
 		color: $text-color;
+		font-size: $font-size-h2;
+		width: 40%;
+		float: left;
+	}
+	.logo{
+		float: right;
+		width: $font-size-h2*2.5;
 	}
 }
+
 .select-container{
 	width: 100%;
 	margin-top: $margin-sm;
