@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Surface, Rectangle } from 'recharts'
 import * as d3 from 'd3'
 import moment from 'moment'
 import isEmpty from 'lodash/isEmpty'
@@ -31,6 +32,7 @@ const mouseX = (event) => {
 	}
 }
 
+/*
 class Timeline extends Component {
 	constructor(props) {
 		super(props)
@@ -408,13 +410,37 @@ class Timeline extends Component {
 			})
 		}
 	}
+	*/
+
+class Timeline extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			x: 50,
+			y: 50,
+			width: 80,
+			height: 100,
+		}
+	
+	changeSize() {
+		this.setState({
+			x: Math.random() * 50,
+			y: Math.random() * 50,
+			width: Math.random() * 400,
+			height: Math.random() * 400,
+		})
+	}
 
 	render() {
+		console.log(this.props.theaters)
+		const { width, height, x, y } = this.state
 		return (
 			<div
 				ref = {element => this.container = element}
 			>
 				<MenuHeader />
+				{/*
 				<OperationDrawer
 					showDetails
 					redirect={this.redirect}
@@ -422,6 +448,30 @@ class Timeline extends Component {
 					open={this.state.operationDrawerOpen}
 					onRequestClose={() => this.setState({operationDrawerOpen: false})}
 				/>
+				*/}
+				<Surface width={500} height={500}>
+					<Rectangle
+						x={x}
+						y={y}
+						width={width}
+						height={height}
+						radius={[5, 10, 8, 15]}
+						stroke="#ff7300"
+						isUpdateAnimationActive
+						fill="none"
+					/>
+				</Surface>
+				<Surface width={500} height={500}>
+					<Rectangle
+						x={x}
+						y={y + height}
+						width={width}
+						height={-height}
+						radius={[5, 10, 8, 15]}
+						stroke="#ff7300"
+						fill="none"
+					/>
+				</Surface>
 			</div>
 		)
 	}
