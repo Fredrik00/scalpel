@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 
 import theme from './theme/theme'
 import LoginForm from './components/LoginForm/LoginForm'

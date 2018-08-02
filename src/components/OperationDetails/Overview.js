@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import List, { ListItem, ListItemText} from 'material-ui/List'
-import Typography from 'material-ui/Typography'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
-import Divider from 'material-ui/Divider'
+import Divider from '@material-ui/core/Divider'
 import './OperationDetails.css'
 import OperationTimeline from './OperationTimeline'
 
