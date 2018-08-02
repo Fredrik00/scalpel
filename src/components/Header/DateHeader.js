@@ -45,7 +45,7 @@ class DateHeader extends Component {
 					</Typography>
 					<Button
 						onClick={dateEditable ? this.toggleDatePicker : null}
-						color={dateEditable ? 'primary' : 'default'} //'contrast'}
+						color={'default'}
 						variant={dateEditable ? 'raised' : 'flat'}
 						disableRipple={!dateEditable}
 					>
