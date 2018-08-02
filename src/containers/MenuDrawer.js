@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
 		},
 		onRequestClose: () => {
 			dispatch(closeMenuDrawer())
-			dispatch(fetchTestData())
+			//dispatch(fetchTestData())  // Use this to fetch data from API
 		}
 	}
 }
