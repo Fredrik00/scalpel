@@ -1,0 +1,25 @@
+//Import shared styles
+@import '../../styles/shared/allShared';
+
+.box{
+	padding: $padding-md;
+	margin: $margin-md;
+	h1{
+		color: $text-color;
+	}
+}
+.select-container{
+	width: 100%;
+	margin-top: $margin-sm;
+	.select{
+		width: 100%;
+	}
+}
+.button-container{
+	width: 100%;
+	padding: $padding-md 0;
+	height: auto;
+}
+button{
+	width: 100%;
+}

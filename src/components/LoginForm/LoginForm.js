@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 
-import Button from 'material-ui/core/Button'
-import TextField from 'material-ui/core/TextField'
-import Dialog, {
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	DialogTitle,
-	withMobileDialog
-} from 'material-ui/core/Dialog'
-import './LoginForm.css'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Paper from '@material-ui/core/Paper'
+import NativeSelect from '@material-ui/core/NativeSelect'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormHelperText from '@material-ui/core/FormHelperText'
 
+import './LoginForm.css'
 
 
 class LoginForm extends Component {
@@ -38,36 +35,42 @@ class LoginForm extends Component {
 		event.preventDefault()
 	}
 
-	render() {
-		<Dialog
-			open
-			onRequestClose={this.props.toggleLogin}
-			fullScreen={this.props.fullScreen}>
-			<DialogTitle>Subscribe</DialogTitle>
-			<DialogContent>
-				<DialogContentText>
-					To subscribe to this website, please enter your email address here. We will send
-					updates occationally.
-				</DialogContentText>
-				<TextField
-					autoFocus
-					margin="dense"
-					id="name"
-					label="Email Address"
-					type="email"
-					fullWidth
-				/>
-			</DialogContent>
-			<DialogActions>
-				<Button onClick={this.props.toggleLogin} color="primary">
-					Cancel
-				</Button>
-				<Button onClick={this.props.toggleLogin} color="primary">
-					Subscribe
-				</Button>
-			</DialogActions>
-		</Dialog>
 
+	render() {
+		return (
+			<Paper className="box">
+				<h1>Logg inn </h1>
+				<TextField
+					autoFocus = {true}
+					margin = {'dense'}
+					id = {'username'}
+					label = {'Brukernavn'}
+					type = {'username'}
+					fullWidth = {true}
+				/>
+				<TextField
+					autoFocus = {true}
+					margin = {'dense'}
+					id = {'password'}
+					label = {'Passord'}
+					type = {'password'}
+					fullWidth = {true}
+				/>
+				<div className="select-container">
+					<InputLabel htmlFor="domain-native-helper">Domene</InputLabel>
+					<NativeSelect className="select">
+						<option value="HELSEMN">HELSEMN</option>
+						<option value="TEST">TEST</option>
+					</NativeSelect>
+					<FormHelperText>Velg din seksjon.</FormHelperText>
+				</div>
+				<div className="button-container">
+					<Button color="primary"  variant="contained">
+						Logg inn
+					</Button>
+				</div>
+			</Paper>
+		)
 	}
 }
 export default LoginForm

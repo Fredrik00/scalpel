@@ -17,7 +17,6 @@ const App = () => {
 		<MuiThemeProvider theme={theme}>
 			<Router basename="/scalpel">
 				<div>
-					<h1>Login</h1>
 					<LoginForm name="loginForm"/>
 				
 				</div>
