@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Dialog, { DialogContent, DialogActions, DialogTitle } from 'material-ui/Dialog'
-import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
-import ScheduleIcon from 'material-ui-icons/Schedule'
-import Typography from 'material-ui/Typography'
+import Dialog, { DialogContent, DialogActions, DialogTitle } from '@material-ui/core/Dialog'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import ScheduleIcon from '@material-ui/icons/Schedule'
+import Typography from '@material-ui/core/Typography'
 
 import { lastOperationEventTime, activePhase, nextPhase } from 'utils/operationUtils'
 
@@ -62,8 +62,8 @@ class PhaseDialog extends React.Component {
 								color="primary" 
 								onClick={this.onEndPhase}
 								disabled={!this.state.isTimeValid}
-								raised
-								dense
+								variant={'raised'}
+								//dense
 							>
 								End {active.name}
 							</Button> 
@@ -73,9 +73,10 @@ class PhaseDialog extends React.Component {
 								style={{gridArea: hasActive ? 'secondary' : 'primary'}}
 								onClick={this.onStartNextPhase}
 								disabled={!this.state.isTimeValid}
-								dense
 								color="primary"
+								//variant={'raised'}
 								raised={!hasActive}
+								//dense
 							>
 								Start {next.name}
 							</Button>
@@ -92,8 +93,8 @@ class PhaseDialog extends React.Component {
 						<Button
 							style={{gridArea: 'cancel'}}
 							onClick={this.props.onRequestClose}
-							dense
 							color="primary"
+							//dense
 						>
 							Cancel
 						</Button>

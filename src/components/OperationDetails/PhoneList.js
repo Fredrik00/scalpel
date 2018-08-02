@@ -1,7 +1,10 @@
 import React from 'react'
-import List, { ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List'
-import IconButton from 'material-ui/IconButton'
-import Phone from 'material-ui-icons/Phone'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import IconButton from '@material-ui/core/IconButton'
+import Phone from '@material-ui/icons/Phone'
 
 const Staff = (props) => {
 	return (

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Drawer from 'material-ui/Drawer'
-import Typography from 'material-ui/Typography'
-import Button from 'material-ui/Button'
+import Drawer from '@material-ui/core/Drawer'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 import isNil from 'lodash/isNil'
-import TextField from 'material-ui/TextField'
+import TextField from '@material-ui/core/TextField'
 
 import moment from 'moment'
 
@@ -71,7 +71,7 @@ class OperationDrawer extends Component {
 			<Drawer
 				open={this.props.open}
 				anchor="bottom"
-				onRequestClose={this.props.onRequestClose}
+				onClose={this.props.onRequestClose}
 				SlideProps={{
 					onExited: this.resetState
 				}}
@@ -101,9 +101,9 @@ class OperationDrawer extends Component {
 					{this.props.showDetails && 					
 						<Button
 							style={{gridArea: 'goto'}}
-							dense
-							raised
+							variant={'raised'}
 							onClick={() => this.props.redirect('/operations/' + operation.id)}
+							//dense
 						>
 								Flere detaljer
 						</Button>
@@ -141,8 +141,8 @@ class OperationDrawer extends Component {
 							color="primary" 
 							onClick={this.onEndPhase}
 							disabled={!this.state.isTimeValid}
-							raised
-							dense
+							variant={'raised'}
+							//dense
 						>
 							Avslutt {active.name}
 						</Button> 
@@ -157,11 +157,12 @@ class OperationDrawer extends Component {
 					{!isFinished && hasNext && 
 						<Button
 							style={{gridArea: hasActive ? 'phase-secondary' : 'phase-primary'}}
-							dense
 							color="primary"
-							raised={!hasActive}
 							onClick={this.onStartNextPhase}
 							disabled={!this.state.isTimeValid}
+							variant={'raised'}
+							//raised={!hasActive}
+							//dense
 						>
 							Start {next.name}
 						</Button>

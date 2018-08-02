@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import AppBar from 'material-ui/AppBar'
-import Tabs, { Tab } from 'material-ui/Tabs'
-import List, { ListItem, ListItemText, ListItemSecondaryAction} from 'material-ui/List'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText' 
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import SwipeableViews from 'react-swipeable-views'
 import { Link } from 'react-router-dom'
 import { Pencil, GreenBall } from 'assets'
@@ -88,7 +92,7 @@ class OperationList extends React.Component {
 													<img src={Pencil} height='20px' alt='Status icon'/>
 													<img src={GreenBall} alt='Status icon'/>
 													<ListItemText primary={operation.procedure} secondary={operation.diagnosis}/>
-													<ListItemSecondaryAction style="color:black">{operation.genderAge}</ListItemSecondaryAction>
+													<ListItemSecondaryAction style={{color:'black'}}>{operation.genderAge}</ListItemSecondaryAction>
 												</ListItem>
 											</Link>
 										</div>

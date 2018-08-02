@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import MenuIcon from 'material-ui-icons/Menu'
+import MenuIcon from '@material-ui/icons/Menu'
 
 import DateHeader from '../components/Header/DateHeader'
 import { setSelectedDate, openMenuDrawer } from '../actions'
