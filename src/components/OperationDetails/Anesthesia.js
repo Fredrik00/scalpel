@@ -1,8 +1,10 @@
 import React from 'react'
-import Grid from 'material-ui/List'
-import Checkbox from 'material-ui/Checkbox'
-import Divider from 'material-ui/Divider'
-import { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List'
+import Grid from '@material-ui/core/List'
+import Checkbox from '@material-ui/core/Checkbox'
+import Divider from '@material-ui/core/Divider'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import './OperationDetails.css'
 
 const fields1 = ([

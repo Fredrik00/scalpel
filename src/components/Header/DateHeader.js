@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import IconButton from 'material-ui/IconButton'
-import Typography from 'material-ui/Typography'
-import Button from 'material-ui/Button'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -45,8 +45,8 @@ class DateHeader extends Component {
 					</Typography>
 					<Button
 						onClick={dateEditable ? this.toggleDatePicker : null}
-						color={dateEditable ? 'primary' : 'contrast'}
-						raised={dateEditable}
+						color={dateEditable ? 'primary' : 'default'} //'contrast'}
+						variant={dateEditable ? 'raised' : 'flat'}
 						disableRipple={!dateEditable}
 					>
 						{moment(this.props.date).format('DD. MMM')}

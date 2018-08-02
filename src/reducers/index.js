@@ -8,6 +8,7 @@ import plans from './plans'
 import persons from './persons'
 import loggedInUser from './loggedInUser'
 import menuDrawerOpen from './menuDrawerOpen'
+import testData from './testData'
 
 const scalpelReducer = combineReducers({
 	menuDrawerOpen,
@@ -18,7 +19,8 @@ const scalpelReducer = combineReducers({
 	plans,
 	selectedPlan,
 	persons,
-	loggedInUser
+	loggedInUser,
+	testData
 })
 
 export default scalpelReducer

@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import Drawer from 'material-ui/Drawer'
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
+import Drawer from '@material-ui/core/Drawer'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon' 
+import ListItemText from '@material-ui/core/ListItemText'
 
-import Divider from 'material-ui/Divider'
+import Divider from '@material-ui/core/Divider'
 
-import StopIcon from 'material-ui-icons/Stop'
-import ViewList from 'material-ui-icons/ViewList'
-import ViewWeek from 'material-ui-icons/ViewWeek'
-import PermContactCalendar from 'material-ui-icons/PermContactCalendar'
+import StopIcon from '@material-ui/icons/Stop'
+import ViewList from '@material-ui/icons/ViewList'
+import ViewWeek from '@material-ui/icons/ViewWeek'
+import PermContactCalendar from '@material-ui/icons/PermContactCalendar'
 import './MenuDrawer.css'
 import {Background, Logo} from '../../assets'
 
@@ -37,7 +40,7 @@ class MenuDrawer extends Component {
 		return (
 			<Drawer
 				open={this.props.open}
-				onRequestClose={this.props.onRequestClose}
+				onClose={this.props.onRequestClose}
 			>
 				<div onClick={this.props.onRequestClose}>
 					<div id="top-content">
