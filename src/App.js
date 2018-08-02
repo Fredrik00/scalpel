@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import theme from './theme/theme'
+import LoginForm from './components/LoginForm/LoginForm'
 import MenuDrawer from './containers/MenuDrawer'
 import TodayTimeline from './containers/TodayTimeline'
 import OperationList from './containers/OperationList'
@@ -15,6 +16,12 @@ const App = () => {
 	return (
 		<MuiThemeProvider theme={theme}>
 			<Router basename="/scalpel">
+				<div>
+					<h1>Login</h1>
+					<LoginForm name="loginForm"/>
+				
+				</div>
+				{/*
 				<div>
 					<MenuDrawer />
 						
@@ -36,6 +43,7 @@ const App = () => {
 						</Switch>
 					</div>
 				</div>
+			*/}
 			</Router>
 		</MuiThemeProvider>
 	)
