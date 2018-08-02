@@ -48,7 +48,7 @@ class MenuDrawer extends Component {
 						<img id="drawer-logo" alt="logo" src={Logo}/>
 						<List dense id="account-name">
 							<ListItem>
-								<ListItemText primary={this.props.user.fullName}/>
+								<ListItemText primary={this.props.user.fullName} disableTypography style={{color: 'white'}}/>
 							</ListItem>
 						</List>
 					</div>
