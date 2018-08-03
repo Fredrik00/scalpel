@@ -183,8 +183,13 @@ class Timeline extends Component {
 			.on('dblclick.zoom', null)
 	
 		// y-axis scale
+		let firstOp = this.props.firstOp
+		let lastOp = this.props.lastOp
+		firstOp.subtract({minutes: 30})
+		lastOp.add({minutes: 30})
 		const y = d3.scaleTime()
-			.domain([moment(date).startOf('day'), moment(date).endOf('day')])
+			//.domain([moment(date).startOf('day'), moment(date).endOf('day')])
+			.domain([firstOp, lastOp])
 			.range([0, timelineHeight-1])
 	
 		// y-axis labels
@@ -427,6 +432,7 @@ class Timeline extends Component {
 	}
 }
 
+// Legg til firstOp og lastOp
 Timeline.propTypes = {
 	date: PropTypes.object,
 	theaters: PropTypes.arrayOf(PropTypes.shape({
