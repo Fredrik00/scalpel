@@ -17,13 +17,31 @@ const mapStateToProps = (state, ownProps) => {
 	if (operationsToday.length > 0) {
 		firstOp = moment(operationsToday[0].phases[0].start)
 		lastOp = moment(operationsToday[0].phases[operationsToday[0].phases.length-1].end)
-		for (let i = 1; i < operationsToday.length; i++) {
-			if (moment(operationsToday[i].phases[0].start) < firstOp) {
-				firstOp = moment(operationsToday[i].phases[0].start)
+		for (let i = 0; i < operationsToday.length; i++) {
+			let phases = operationsToday[i].phases
+			let planned = operationsToday[i].plannedPhases
+			let phasesStart = moment(phases[0].start)
+			let plannedStart = moment(planned[0].start)
+			let phasesEnd = moment(phases[phases.length -1].end)
+			let plannedEnd = moment(planned[planned.length -1].end)
+			
+			operationsToday[i].start = phases[0].start
+			operationsToday[i].end = phases[phases.length -1].end
+
+			if (phasesStart < firstOp) {
+				firstOp = phasesStart
 			}
 
-			if (moment(operationsToday[i].phases[operationsToday[i].phases.length-1].end) > lastOp) {
-				lastOp = moment(operationsToday[i].phases[operationsToday[i].phases.length-1].end)
+			if (plannedStart < firstOp) {
+				firstOp = plannedStart
+			}
+
+			if (phasesEnd > lastOp) {
+				lastOp = phasesEnd
+			}
+
+			if (plannedEnd > lastOp) {
+				lastOp = plannedEnd
 			}
 		}
 	}

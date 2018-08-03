@@ -245,6 +245,15 @@ class Timeline extends Component {
 			.attr('gid', op => op.id)
 
 		// Actual phases
+		const actualBackground = operationEnter.append('g').append('rect')
+			.attr('x', op => operationActualX(op.column))
+			.attr('y', op => y(moment(op.start)))
+			.attr('width', operationActualWidth)
+			.attr('height', op => y(moment(op.end) || now) - y(moment(op.start)))
+			.attr('fill', '#dddddd')
+			.attr('stroke-width', 0)
+
+		// Actual phases
 		const actualRects = operationEnter.append('g')
 			.selectAll('rect')
 			.data(op => op.phases.filter(phase => !isNil(phase.start)))
@@ -253,17 +262,19 @@ class Timeline extends Component {
 			.attr('x', phase => operationActualX(phase.column))
 			.attr('y', phase => y(moment(phase.start)))
 			.attr('width', operationActualWidth)
-			.attr('height', phase => y(moment(phase.end || now)) - y(moment(phase.start)))
+			.attr('height', phase => y(moment(phase.end) || now) - y(moment(phase.start)))
 			.attr('fill', phase => phase.color)
 			.attr('stroke-width', 0)
 		
-		// Background, to enable clicking outside phases
+		// Foreground, to enable clicking outside phases
 		const timeRects =  operationEnter.append('g').append('rect')
 			.attr('class', 'Timeline-operation-backdrop')
 			.attr('x', op => operationActualX(op.column))
-			.attr('y', op => y(startTime(op)))
+			//.attr('y', op => y(startTime(op)))
+			.attr('y', op => y(moment(op.start)))
 			.attr('width', operationActualWidth)
-			.attr('height', op => y(hasActivePhase(op) ? now : endTime(op)) - y(startTime(op)))
+			//.attr('height', op => y(hasActivePhase(op) ? now : endTime(op)) - y(startTime(op)))
+			.attr('height', op => y(moment(op.end) || now) - y(moment(op.start)))
 
 		// Planned phases
 		const plannedRects = operationEnter.append('g')
@@ -353,14 +364,22 @@ class Timeline extends Component {
 			this.zoomTransformEvent = event
 			const transform = event.transform
 			const newY = transform.rescaleY(y)
-			
-			timeRects
-				.attr('y', op => newY(startTime(op)))
-				.attr('height', op => newY(hasActivePhase(op) ? now : endTime(op)) - newY(startTime(op)))
+
+			actualBackground
+				//.attr('y', op => newY(startTime(op)))
+				.attr('y', op => newY(moment(op.start)))
+				//.attr('height', op => newY(hasActivePhase(op) ? now : endTime(op)) - newY(startTime(op)))
+				.attr('height', op => newY(moment(op.end) || now) - newY(moment(op.start)))
 
 			actualRects
 				.attr('y', phase => newY(moment(phase.start)))
-				.attr('height', phase => newY(moment(phase.end || now)) - newY(moment(phase.start)))
+				.attr('height', phase => newY(moment(phase.end) || now) - newY(moment(phase.start)))
+
+			timeRects
+				//.attr('y', op => newY(startTime(op)))
+				.attr('y', op => newY(moment(op.start)))
+				//.attr('height', op => newY(hasActivePhase(op) ? now : endTime(op)) - newY(startTime(op)))
+				.attr('height', op => newY(moment(op.end) || now) - newY(moment(op.start)))
 			
 			plannedRects
 				.attr('y', phase => newY(moment(phase.start)))
@@ -387,8 +406,9 @@ class Timeline extends Component {
 			xoffset = (xoffset <= xScrollDomain[0]) ? xoffset : xScrollDomain[0]
 			xoffset = (xoffset >= xScrollDomain[1]) ? xoffset : xScrollDomain[1]
 			
-			timeRects.attr('x', op => operationActualX(op.column))
+			actualBackground.attr('x', op => operationActualX(op.column))
 			actualRects.attr('x', phase => operationActualX(phase.column))
+			timeRects.attr('x', op => operationActualX(op.column))
 			plannedRects.attr('x', op => operationPlannedX(op.column))
 			theaterGroup.attr('transform', (theater, i) => translate(theaterX(theater, i), 0))
 			if(scrollBar) {
