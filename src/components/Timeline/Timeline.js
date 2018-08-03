@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Surface, Rectangle } from 'recharts'
 import * as d3 from 'd3'
 import moment from 'moment'
 import isEmpty from 'lodash/isEmpty'
 import isNil from 'lodash/isNil'
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
 
 import OperationDrawer from '../../containers/OperationDrawer'
 import MenuHeader from '../../containers/MenuHeader'
@@ -415,27 +415,21 @@ class Timeline extends Component {
 class Timeline extends Component {
 	constructor(props) {
 		super(props)
-
-		this.state = {
-			x: 50,
-			y: 50,
-			width: 80,
-			height: 100,
-		}
-	}
 	
-	changeSize() {
-		this.setState({
-			x: Math.random() * 50,
-			y: Math.random() * 50,
-			width: Math.random() * 400,
-			height: Math.random() * 400,
-		})
+		this.data = [
+			{name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
+			{name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
+			{name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
+			{name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
+			{name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
+			{name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
+			{name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+		]
 	}
 
 	render() {
-		console.log(this.props.theaters)
-		const { width, height, x, y } = this.state
+		console.log(this.props)
+		console.log(this.data)
 		return (
 			<div
 				ref = {element => this.container = element}
@@ -450,29 +444,16 @@ class Timeline extends Component {
 					onRequestClose={() => this.setState({operationDrawerOpen: false})}
 				/>
 				*/}
-				<Surface width={500} height={500}>
-					<Rectangle
-						x={x}
-						y={y}
-						width={width}
-						height={height}
-						radius={[5, 10, 8, 15]}
-						stroke="#ff7300"
-						isUpdateAnimationActive
-						fill="none"
-					/>
-				</Surface>
-				<Surface width={500} height={500}>
-					<Rectangle
-						x={x}
-						y={y + height}
-						width={width}
-						height={-height}
-						radius={[5, 10, 8, 15]}
-						stroke="#ff7300"
-						fill="none"
-					/>
-				</Surface>
+				<BarChart width={600} height={300} data={this.data}
+					margin={{top: 20, right: 30, left: 20, bottom: 5}}>
+					<CartesianGrid strokeDasharray="3 3"/>
+					<XAxis dataKey="name"/>
+					<YAxis/>
+					<Tooltip/>
+					<Legend />
+					<Bar dataKey="pv" stackId="a" fill="#8884d8" />
+					<Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+				</BarChart>
 			</div>
 		)
 	}
