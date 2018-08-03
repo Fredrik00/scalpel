@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 import moment from 'moment'
 import isEmpty from 'lodash/isEmpty'
 import isNil from 'lodash/isNil'
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import Chart from 'react-google-charts'
 
 import OperationDrawer from '../../containers/OperationDrawer'
 import MenuHeader from '../../containers/MenuHeader'
@@ -415,21 +415,92 @@ class Timeline extends Component {
 class Timeline extends Component {
 	constructor(props) {
 		super(props)
-	
-		this.data = [
-			{name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
-			{name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
-			{name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
-			{name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
-			{name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
-			{name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
-			{name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+
+		/*
+		function daysToMilliseconds(days) {
+			return days * 24 * 60 * 60 * 1000
+		}
+		*/
+
+		this.columns = [
+			{ type: 'string', id: 'Theater' },
+			{ type: 'string', id: 'Name' },
+			{ type: 'date', id: 'Start' },
+			{ type: 'date', id: 'End' }
 		]
+		
+		/*
+		this.rows = [
+			[
+				'Research',
+				'Find sources',
+				new Date(2015, 0, 1),
+				new Date(2015, 0, 5),
+				null,
+				100,
+				null
+			],
+			[
+				'Write',
+				'Write paper',
+				null,
+				new Date(2015, 0, 9),
+				daysToMilliseconds(3),
+				25,
+				'Research,Outline'
+			],
+			[
+				'Cite',
+				'Create bibliography',
+				null,
+				new Date(2015, 0, 7),
+				daysToMilliseconds(1),
+				20,
+				'Research'
+			],
+			[
+				'Complete',
+				'Hand in paper',
+				null,
+				new Date(2015, 0, 10),
+				daysToMilliseconds(1),
+				0,
+				'Cite,Write'
+			],
+			[
+				'Outline',
+				'Outline paper',
+				null,
+				new Date(2015, 0, 6),
+				daysToMilliseconds(1),
+				100,
+				'Research'
+			]
+		]
+		*/
+		this.operations = this.props.theaters[0].operations
+		console.log(this.operations)
+		console.log(this.operations[0].length)
+		this.rows = [
+		]
+
+		for (var i = 0; i < this.operations.length;  i++) {
+			for (var j = 0; j < this.operations[i].phases.length; j++) {
+				this.rows.push(
+					[
+						//this.phases[i].id.toString(),
+						this.operations[i].id.toString(),
+						this.operations[i].phases[j].name,
+						moment(this.operations[i].phases[j].start).toDate(),
+						moment(this.operations[i].phases[j].end).toDate()
+					]
+				)
+			}
+		}
 	}
 
 	render() {
-		console.log(this.props)
-		console.log(this.data)
+		console.log(this.props.theaters[0].operations)
 		return (
 			<div
 				ref = {element => this.container = element}
@@ -444,16 +515,13 @@ class Timeline extends Component {
 					onRequestClose={() => this.setState({operationDrawerOpen: false})}
 				/>
 				*/}
-				<BarChart width={600} height={300} data={this.data}
-					margin={{top: 20, right: 30, left: 20, bottom: 5}}>
-					<CartesianGrid strokeDasharray="3 3"/>
-					<XAxis dataKey="name"/>
-					<YAxis/>
-					<Tooltip/>
-					<Legend />
-					<Bar dataKey="pv" stackId="a" fill="#8884d8" />
-					<Bar dataKey="uv" stackId="a" fill="#82ca9d" />
-				</BarChart>
+				<Chart
+					chartType="Timeline"
+					data={[this.columns, ...this.rows]}
+					width="100%"
+					height="50%"
+					legendToggle
+				/>
 			</div>
 		)
 	}
