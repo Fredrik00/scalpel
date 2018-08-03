@@ -8,7 +8,7 @@ import isNil from 'lodash/isNil'
 import OperationDrawer from '../../containers/OperationDrawer'
 import MenuHeader from '../../containers/MenuHeader'
 
-import { startTime, endTime, hasActivePhase } from 'utils/operationUtils'
+//import { startTime, endTime, hasActivePhase } from 'utils/operationUtils'
 import { translate } from 'utils/d3Utils'
 
 import './Timeline.css'
