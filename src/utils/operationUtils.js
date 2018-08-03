@@ -7,7 +7,11 @@ export const firstPhase = operation => operation.phases[0]
 export const lastStartedPhase = operation => last(startedPhases(operation))
 
 export const lastOperationEventTime = operation => {
-	return startedPhases(operation).reduce((acc, phase) => phase.end || moment(new Date) /*phase.start*/ || acc, null)
+	return startedPhases(operation).reduce((acc, phase) => phase.end || phase.start || acc, null)
+}
+
+export const lastOperationEndTime = operation => {
+	return startedPhases(operation).reduce((acc, phase) => phase.end || moment(new Date) || acc, null)
 }
 
 export const nextPhase = operation => operation.phases.find(phase => isNil(phase.start))
@@ -33,7 +37,8 @@ export const startTime = operation => {
 }
 
 export const endTime = operation => {
-	const actualFinishTime = lastOperationEventTime(operation)
+	//const actualFinishTime = lastOperationEventTime(operation)
+	const actualFinishTime = lastOperationEndTime(operation)
 	const plannedFinishTime = operation.plannedPhases.reduce(
 		(acc, current) => acc.clone().add(current.duration, 'minutes'), 
 		moment(operation.plannedPhases[0].start))
