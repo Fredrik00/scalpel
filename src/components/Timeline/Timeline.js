@@ -183,8 +183,8 @@ class Timeline extends Component {
 			.on('dblclick.zoom', null)
 	
 		// y-axis scale
-		let firstOp = this.props.firstOp
-		let lastOp = this.props.lastOp
+		let firstOp = this.props.firstOp.clone()
+		let lastOp = this.props.lastOp.clone()
 		firstOp.subtract({minutes: 30})
 		lastOp.add({minutes: 30})
 		const y = d3.scaleTime()
